@@ -1,5 +1,5 @@
-from django.urls import url, include
-from instagram.views import PostLikeToggle
+from django.conf.urls import url, include
+from insta.views import PostLikeToggle
 from . import views
 
 urlpatterns = [
