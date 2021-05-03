@@ -112,7 +112,7 @@ def post_comment(request, id):
         'is_liked': is_liked,
         'total_likes': image.total_likes()
     }
-    return render(request, 'instagram/single_post.html', params)
+    return render(request, 'insta/single_post.html', params)
 
 class PostLikeToggle(RedirectView):
     def get_redirect_url(self, *args, **kwargs):
@@ -148,5 +148,5 @@ def like_post(request):
         'total_likes': image.total_likes()
     }
     if request.is_ajax():
-        html = render_to_string('instagram/like_section.html', params, request=request)
+        html = render_to_string('insta/like_section.html', params, request=request)
         return JsonResponse({'form': html})
