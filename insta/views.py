@@ -39,4 +39,4 @@ def index(request):
         'users': users,
 
     }
-    return render(request, 'instagram/index.html', params)
+    return render(request, 'insta/index.html', params)
