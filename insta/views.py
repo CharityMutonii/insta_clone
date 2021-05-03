@@ -165,4 +165,11 @@ def search_profile(request):
         return render(request, 'insta/results.html', params)
     else:
         message = "You haven't searched for any image category"
-    return render(request, 'insta/results.html', {'message': message})        
+    return render(request, 'insta/results.html', {'message': message})  
+
+def unfollow(request, to_unfollow):
+    if request.method == 'GET':
+        user_profile2 = Profile.objects.get(pk=to_unfollow)
+        unfollow_d = Follow.objects.filter(follower=request.user.profile, followed=user_profile2)
+        unfollow_d.delete()
+        return redirect('user_profile', user_profile2.user.username)
