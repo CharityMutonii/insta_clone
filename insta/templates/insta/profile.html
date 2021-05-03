@@ -1,0 +1,98 @@
+{% extends 'instagram/layout.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container" style="margin-top:8%">
+    <div class="content-section">
+        <div class="media">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-3">
+                        <img class="rounded-circle account-img" src="{{ user.profile.profile_picture.url }}">
+                    </div>
+                    <div class="col-md-6 mt-3">
+                        <div class="media-body">
+                            <div class="account-heading"><span class="mr-3 text-secondary username">{{ user.username }}</span>
+                            <a class="mt-3" data-toggle="modal" data-target="#ModalCenter"><i class="fa fa-cog mt-3" id="cog"></i></a>
+                            </div>
+
+                            <div class="post-details mt-3 mb-3">
+                                <span class="mr-5"><strong>{{images.count}}</strong> Posts</span>
+                                <span class="mr-5"> <strong>{{ user.profile.followers.count }}</strong> followers</span>
+                                <span class="mr-5"> <strong>{{ user.profile.following.count }}</strong> following</span>
+                            </div>
+                            <h5>{{ user.profile.name }}</h5>
+                            <p class="text-secondary">{{ user.profile.bio }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade bd-example-modal-sm" id="ModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <a class="D-block mx-auto" href="{% url 'logout' %}">Log Out</a>
+                        <hr>
+                        <a class="D-block mx-auto" href="" data-dismiss="modal">Close</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <a class="btn btn-sm btn-outline-secondary mr-3" style="background-color:black;color:white; padding-left:10%;padding-right:10%;margin-left:5%;"
+         data-toggle="modal" data-target=".bd-example-modal-md"><strong>Edit Profile</strong></a>
+
+        <div class="modal fade bd-example-modal-md" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-md ">
+                <div class="modal-content">
+                    <form action="" method="post" novalidate enctype="multipart/form-data" class="mr-4 mt-4 ml-4 mb-4">
+                        {% csrf_token%}
+                        {{ user_form|crispy}}
+                        {{ prof_form|crispy}}
+                        <button type="submit" class="btn btn-primary btn-sm"> Update Profile</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr class="mt-4">
+    <ul class="nav text-center" id="my" role="tablist" style="margin-left:30%">
+      <li class="nav-item">
+        <a href="#posts" class="nav-link text-monospace font-weight-bold"data-toggle="tab" role="tab" aria-controls="posts" aria-selected="false"><i class="far fa-calendar-plus"></i>
+          POSTS</a>
+      </li>
+      <li class="nav-item">
+                    <a href="#igtv" class="nav-link text-monospace font-weight-bold "data-toggle="tab" role="tab" aria-controls="posts" aria-selected="false"><i class="fas fa-tv"></i>
+                        IGTV
+                    </a>
+                    </li>
+                    <li class="nav-item">
+                    <a href="#saved" class="nav-link text-monospace font-weight-bold "data-toggle="tab" role="tab" aria-controls="posts" aria-selected="false"><i class="far fa-bookmark"></i>
+                        SAVED
+                    </a>
+                    </li>
+                    <li class="nav-item">
+                    <a href="#tagged" class="nav-link text-monospace font-weight-bold "data-toggle="tab" role="tab" aria-controls="posts" aria-selected="false"><i class="fas fa-user-tag"></i>
+                        TAGGED
+                    </a>
+                    </li>
+                    </ul>
+    <div class="card-columns" id="#posts">
+        {% for image in images %}
+            <div class="card zoom-on-hover">
+                <div class="card-body">
+                    <img src="{{image.image.url}}" alt="{{image.caption}}" class="card-img">
+                    <p id="overlay"class="text">
+                      <i class="fas fa-heart" style="color:white; font-size: 18"></i>
+                      <span style="color: white">{{image.likes.count}}</span>
+                      <i class="fas fa-comment ml-4" style="color: white"></i> <span style="color: white">{{image.comments.count}}</span>
+                       <a href="{%url 'delete' id=image.id %}"><i class="fas fa-trash ml-4 " style="color:white"></i></a></p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
