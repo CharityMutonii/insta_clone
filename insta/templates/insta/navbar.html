@@ -1,8 +1,10 @@
-<div class="navbar fixed-top bg-white">
+<!-- <div class="navbar fixed-top bg-white">
     <nav class="container">
       <span class="navbar-brand mb-0 h1">
           <a href="/">
-              <div id="brand" class="instaicon logo d-none d-sm-block"></div>
+              <div id="brand" class="instaicon logo d-none d-sm-block">
+                  <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Funsplash.com%2Fimages%2Fthings%2Fbook&psig=AOvVaw13hSWdikWy4UOO1hs6de_Y&ust=1620203497036000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCKCqwMHOr_ACFQAAAAAdAAAAABAD" alt="">
+              </div>
               <div class="instaicon mainicon d-block d-sm-none"></div>
           </a>
       </span>
@@ -18,4 +20,26 @@
             <a href="{% url 'profile' user.username %}" class="instaicon pers"></a>
         </span>
     </nav>
-</div>
+</div> -->
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="/">
+          <img src="https://i.pinimg.com/originals/0f/1e/cd/0f1ecd724117e27390873d3e42b24571.jpg" width="50" height="50" alt="">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCfUsmcYEHuUOVyorQkLvlSqKfH55V82TVlg&usqp=CAU" alt="" width="100" height="100">
+        </a>
+      </nav>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/"> <span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
+      <form class="mb-0 h1 ml-auto mr-auto"  id="searchform" action="{% url 'search' %}" >
+        <input name="search_user" autocomplete="off" id="searching" class="form-control d-none d-md-block" placeholder="Search">
+       <i class="spinner "></i>
+   </form>
+    </div>
+  </nav>

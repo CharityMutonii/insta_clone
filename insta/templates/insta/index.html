@@ -1,4 +1,4 @@
-{% extends 'instagram/layout.html' %}
+{% extends 'insta/layout.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
 {% block content %}
@@ -7,17 +7,17 @@
         <div class="col-md-4 mt-4 userinfo">
             <div class="row">
                 <div class="col-md-3 ml-2">
-                    <img class="rounded-circle user-img" src="{{ user.profile.profile_picture.url }}">
+                    <img class="rounded-circle user-img" src="{{ user.profile.profile_picture.url }}" width="80" height="80">
                 </div>
                 <div class="col-md-6 mt-4 user-detail">
                     <span class=" text-secondary"><a
-                            href="{% url 'user_profile' user.username %}">{{ user.username }}(You)</a></span> <br>
+                            href="{% url 'user_profile' user.username %}" style="color: black;">{{ user.username }}(You)</a></span> <br>
                     <span class=" inname">{{ user.profile.name }}</span>
                 </div>
             </div>
             <div class="row" >
                 <div class="col-md-10" >
-                    <div class="card mt-4 mr-2 ml-2" style="background-color:black;">
+                    <div class="card mt-4 mr-2 ml-2" >
                         <div class="card-title text-secondary mt-2 mr-2 ml-2 ">People you may know!</div>
                         {% for user in users %}
                         <div class="container">
@@ -27,7 +27,7 @@
                                          width="45px" height="45px">
                                 </div>
                                 <div class="col-md-6 mr-2 mt-2">
-                                    <span><a href="{% url 'user_profile' user.username  %}">{{user.username}}</a></span>
+                                    <span><a href="{% url 'user_profile' user.username  %}" style="color: black;">{{user.username}}</a></span>
                                 </div>
                                 <div class="col-md-4">
                                 </div>
@@ -73,7 +73,7 @@
                 <div class="card-title">
                     <img src="{{image.user.profile_picture.url}}" class="rounded-circle border ml-3 mt-2  mr-3"
                          alt="{{image.user.user.username}}" width="35" height="35">
-                    <a href="{% url 'user_profile' image.user.user.username  %}" class="mt-4 user">{{image.user.user.username|title}}</a>
+                    <a href="{% url 'user_profile' image.user.user.username  %}" class="mt-4 user" style="color: black;">{{image.user.user.username|title}}</a>
                 </div>
                 <div class="card-body mb-4">
                     <a href="{% url 'comment' image.id %}"><div class="card-text"
@@ -90,13 +90,13 @@
                             class="far fa-comment hearticon mx-auto" aria-hidden="true"></i>
                     </a></button>
                 </div>
-                <span class="ml-4 mb-1"><strong>{{image.likes.count}} like{{image.likes.count|pluralize}}</strong></span>
-                <span class="text-secondary ml-4 viewall"><a href="{% url 'comment' image.id %}">view all {{image.comments.count}} comment{{image.comments.count|pluralize}}</a></span>
+                <span class="ml-4 mb-1"><strong style="color: black;">{{image.likes.count}} like{{image.likes.count|pluralize}}</strong></span>
+                <span ><a href="{% url 'comment' image.id %}" class="text-secondary ml-4 viewall">view all {{image.comments.count}} comment{{image.comments.count|pluralize}}</a></span>
                 <div class="allcomments mb-4">
                     {% for comment in image.comments.all|slice:'2' %}
                     <div class="comment">
-                        <div class="ml-4"><strong>{{ comment.user.user.username }}</strong> <span
-                                class="text-secondary">{{ comment.comment }}</span>
+                        <div class="ml-4"><strong style="color: black;">{{ comment.user.user.username }}</strong> <span
+                                class="text-secondary" style="color: black;">{{ comment.comment }}</span>
                         </div>
                     </div>
                     {% empty %}
@@ -109,7 +109,7 @@
 
 
     </div>
-    <p class="text-center mt-5"><strong style="color:#893D2D  ;">GRAM</strong>~<strong style="color:#893D2D ;">LIKE.</strong></p>
+    <p class="text-center mt-5"><strong style="color:black ;">Instagram</strong>~<strong style="color:black ;"></strong></p>
 </div>
 
 {% endblock %}
