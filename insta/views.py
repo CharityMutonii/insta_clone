@@ -106,13 +106,14 @@ def post_comment(request, id):
             return HttpResponseRedirect(request.path_info)
     else:
         form = CommentForm()
+
     params = {
         'image': image,
         'form': form,
         'is_liked': is_liked,
         'total_likes': image.total_likes()
     }
-    return render(request, 'insta/single_post.html', params)
+    return render(request, 'insta/single _post.html', params)
 
 class PostLikeToggle(RedirectView):
     def get_redirect_url(self, *args, **kwargs):
