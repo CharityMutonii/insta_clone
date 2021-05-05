@@ -31,7 +31,7 @@ As a user of the application you will be able to:
 > + Follow other users
 
 ### Liknk to the live site
-* 
+* https://chagram.herokuapp.com/
 
 ### Pre-requisites
 
