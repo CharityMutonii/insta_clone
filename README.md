@@ -95,11 +95,6 @@ python3 manage.py runserver
 127.0.0.1:8000/admin
 ```
 
-
-
-
-
-
 ## Technologies Used
 
 * Html5 and Css3
@@ -108,9 +103,6 @@ python3 manage.py runserver
 * Django web framework used
 * JQUERY
 * Postgresql database
-
-
-
 
 
 ## License
